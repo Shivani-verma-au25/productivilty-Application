@@ -7,13 +7,13 @@ import { featuresData } from "../featuresData";
 const HomePage = () => {
   
   return (
-    <div className="max-w-7xl h-screen mx-auto bg-gray-50">
+    <div className="max-w-7xl h-screen mx-auto bg-gray-50 dark:bg-gray-900">
       {/* top section */}
       <div className="w-full flex justify-center  ">
         {/* left part */}
-        <div className="w-2/2 bg-gray-50 flex justify-center items-start py-20">
+        <div className="w-2/2 bg-gray-50 flex justify-center items-start py-20 dark:bg-gray-900">
           {/* container */}
-          <div className="relative max-w-xl w-full bg-white rounded-2xl px-8 py-6 shadow-xl flex flex-col md:flex-row items-center gap-6">
+          <div className="relative max-w-xl w-full bg-white rounded-2xl px-8 py-6 shadow-xl flex flex-col md:flex-row items-center gap-6 dark:bg-gray-300 ">
             {/* text section */}
             <div className="md:w-1/2 flex flex-col justify-center gap-4">
               <h1 className="text-3xl font-bold text-gray-800">Hi, Alex! 👋</h1>
@@ -34,7 +34,7 @@ const HomePage = () => {
                   <div key={index} className="flex items-center gap-2">
                     <FaChevronRight
                       size={18}
-                      className={`border ${item.color} rounded-full p-1 text-gray-600`}
+                      className={`border ${item.color} rounded-full p-1 text-gray-100 `}
                     />
                     <span className="text-xs font-semibold text-gray-600">
                       {item.label}

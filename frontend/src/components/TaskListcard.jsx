@@ -11,13 +11,13 @@ const TaskListcard = ({task}) => {
     
   return (
     <>  {/* Task Card */}
-        <div key={task._id} className="flex justify-between items-start bg-white border rounded-xl p-4 shadow-sm hover:shadow-md transition">
+        <div key={task._id} className="flex justify-between items-start bg-white border rounded-xl p-4 shadow-sm hover:shadow-md transition dark:bg-gray-800 text-gray-800 dark:text-gray-100">
           <div>
-            <h3 className="font-semibold text-gray-800">{task.taskTitle}</h3>
+            <h3 className="font-semibold text-gray-800 dark:text-gray-100">{task.taskTitle}</h3>
             {markedDone ? (
-              <p className="text-sm text-green-500 font-bold mt-1 line-through">
+              <p className="text-sm text-green-500 font-bold mt-1 line-through dark:text-green-500">
                 {task.taskDetails}</p>) : (
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-gray-500 mt-1 dark:text-gray-400" >
                 {task.taskDetails}
               </p>
             )}
