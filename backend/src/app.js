@@ -17,4 +17,7 @@ app.use(cors({
     credentials: true    
 }))
 
+import taskRouter from './routers/task.router.js';
+app.use('/api/v1/tasks',taskRouter)
+
 export {app}
