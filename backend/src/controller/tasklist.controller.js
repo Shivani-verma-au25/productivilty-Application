@@ -33,6 +33,8 @@ export const createTask = asyncHandler(async (req , res) => {
 //get all task conteroller
 export const getAllTasks = asyncHandler(async(req ,res) =>{
     const tasks = await Task.find();
+    console.log(tasks);
+    
     
     if(!tasks) return res.json({
         success :false,

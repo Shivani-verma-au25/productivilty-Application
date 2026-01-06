@@ -7,6 +7,7 @@ import DaliyPlanner from './components/DaliyPlanner'
 import MotivationalQuots from './components/MotivationalQuots'
 import PromodromoTimer from './components/PromodromoTimer'
 import DailyGoals from './components/DailyGoals'
+import { Toaster } from './components/ui/sonner'
 
 const App = () => {
   return (
@@ -20,7 +21,8 @@ const App = () => {
           <Route path='/pomodorotimer' element={<PromodromoTimer/>} />
           <Route path='/dailygoals' element={<DailyGoals/>} />
 
-        </Routes>    
+        </Routes>   
+        <Toaster/> 
       </div>
   )
 }
