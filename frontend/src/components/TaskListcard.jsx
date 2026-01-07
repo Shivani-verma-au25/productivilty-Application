@@ -43,6 +43,7 @@ const TaskListcard = ({ task }) => {
               {task.taskDetails}
             </p>
           )}
+          <p className="text-[.6rem] font-bold mt-2">Created at {" "}  : {" "} {new Date(task.createdAt).toLocaleDateString()}</p>
         </div>
 
         <div>
