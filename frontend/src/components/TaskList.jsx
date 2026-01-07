@@ -7,10 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { AxiosInstance } from "@/utils/axios";
 import { toast } from "sonner";
 import { useTasks } from "@/Context/TaskProvider";
+import { LoaderCircle } from "lucide-react";
 
 const TaskList = () => {
   const navigate = useNavigate();
   const { tasks, addTask ,setTask} = useTasks();
+  const [loading,setLoading] = useState(false)
 
   const [formData, setFormData] = useState({
     taskTitle: "",
@@ -19,9 +21,9 @@ const TaskList = () => {
 
   const handleTask = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const resp = await AxiosInstance.post("/v1/tasks/create-task", formData);
-      console.log("created task", resp);
       if (resp.data?.success) {
         addTask(resp.data?.task);
         toast.success(resp.data?.message || "Task created successfully");
@@ -30,8 +32,12 @@ const TaskList = () => {
         taskDetails: "",
         taskTitle: "",
       });
+      setLoading(false)
     } catch (error) {
       console.log("error in creating task", error);
+      setLoading(false)
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -113,8 +119,9 @@ const TaskList = () => {
 
         {/* Button */}
         <div className="md:col-span-3 flex md:items-end">
-          <Button type="submit" className="w-full cursor-pointer">
-            Add Task
+          <Button type="submit" className="w-full cursor-pointer ">
+            {loading ? (<span className="flex items-center justify-center gap-3"><LoaderCircle size={20} className="transition-all animate-spin duration-200 ease-linear"/>Adding....</span>) : 'Add Task' }
+            
           </Button>
         </div>
       </form>

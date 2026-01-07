@@ -8,6 +8,7 @@ import MotivationalQuots from './components/MotivationalQuots'
 import PromodromoTimer from './components/PromodromoTimer'
 import DailyGoals from './components/DailyGoals'
 import { Toaster } from './components/ui/sonner'
+import NotFound from './components/NotFound'
 
 const App = () => {
   return (
@@ -20,7 +21,7 @@ const App = () => {
           <Route path='/motivationalquots' element={<MotivationalQuots/>} />
           <Route path='/pomodorotimer' element={<PromodromoTimer/>} />
           <Route path='/dailygoals' element={<DailyGoals/>} />
-
+          <Route path='/*' element={<NotFound />} />
         </Routes>   
         <Toaster/> 
       </div>
