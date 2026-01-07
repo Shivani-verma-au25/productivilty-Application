@@ -33,8 +33,6 @@ export const createTask = asyncHandler(async (req , res) => {
 //get all task conteroller
 export const getAllTasks = asyncHandler(async(req ,res) =>{
     const tasks = await Task.find();
-    console.log(tasks);
-    
     
     if(!tasks) return res.json({
         success :false,
@@ -46,4 +44,39 @@ export const getAllTasks = asyncHandler(async(req ,res) =>{
         message : "Tasks fetched successfully.",
         data :{tasks}
     })
+})
+
+// delete task controller
+export const deleteTask = asyncHandler ( async (req, res) =>{
+    const {id} = req.params;
+    if(!id) return res.status(404).json({
+        success : false,
+        message : "Task id is required."
+    })  
+
+    const task = await Task.findByIdAndDelete(id);
+
+    if(!task) return res.status(401).json({
+        success : false,
+        message : "No task found."
+    })
+
+    return res.status(200).json({
+        success : true,
+        message : "Task deleted successfully."
+    })
+
+
+    // const task = await Task.findById(id);
+    // if(!task) return res.json({
+    //     success : false,
+    //     message : "No task found."
+    // })
+    // await task.remove();
+
+    // return res.status(200).json({
+    //     success : true,
+    //     message : "Task deleted successfully."
+    // })
+    
 })

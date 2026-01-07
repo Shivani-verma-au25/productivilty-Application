@@ -2,12 +2,27 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { IoClose } from "react-icons/io5";
 import { MdOutlineDone } from "react-icons/md";
+import { toast } from "sonner";
+import { AxiosInstance } from "@/utils/axios";
 
 
 const TaskListcard = ({task}) => {
   const [markedDone ,setMarkedDone] = useState(false);
+  
+  const hanldeDeleteTask =  async(taskId) =>{
+    try {
+      const resp = await AxiosInstance.delete(`/v1/tasks/delete-task/${taskId}`);
+      if(resp.data.success){
+        toast.success(resp.data?.message || "Task deleted successfully"); 
+      }
+    } catch (error) {
+      console.log("error while deleteing task" , error);
+      toast.error("Error while deleting task");
+      
+    }
+  }
     
-    
+
     
   return (
     <>  {/* Task Card */}
@@ -30,7 +45,9 @@ const TaskListcard = ({task}) => {
             variant="ghost" size="icon" className="cursor-pointer">
               <MdOutlineDone size={18} />
             </Button>
-            <Button variant="ghost" size="icon" className="cursor-pointer">
+            <Button 
+            onClick = {() => hanldeDeleteTask(task._id)}
+            variant="ghost" size="icon" className="cursor-pointer">
               <IoClose size={18} />
             </Button>
           </div>
