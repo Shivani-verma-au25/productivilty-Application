@@ -25,7 +25,7 @@ export const createTask = asyncHandler(async (req , res) => {
     res.status(201).json({
         success:true,
         message:'Task Created successfully',
-        data:{task}
+        task
     });
 })
 
@@ -42,7 +42,7 @@ export const getAllTasks = asyncHandler(async(req ,res) =>{
     return res.status(200).json({
         success : true,
         message : "Tasks fetched successfully.",
-        data :{tasks}
+        tasks
     })
 })
 

@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 export const ThemeContext = createContext()
 
-
-
 const ThemeProvider = ({children}) => {
   const [theme,setTheme] = useState('light');
 
@@ -20,7 +18,6 @@ const ThemeProvider = ({children}) => {
   const toggleTheme = ()=>{
     const newTheme = theme === 'light'? 'dark' : 'light';
     setTheme(newTheme);
-
     document.documentElement.classList.toggle('dark',newTheme === 'dark');
     localStorage.setItem('theme',newTheme);
   }

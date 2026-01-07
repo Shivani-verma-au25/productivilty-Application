@@ -6,45 +6,48 @@ import TaskListcard from "./TaskListcard";
 import { useNavigate } from "react-router-dom";
 import { AxiosInstance } from "@/utils/axios";
 import { toast } from "sonner";
+import { useTasks } from "@/Context/TaskProvider";
 
 const TaskList = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
-  const [formData,setFormData] = useState({
-    taskTitle : "",
-    taskDetails : ""
-  })
+  const { tasks, addTask ,setTask} = useTasks();
+
+  const [formData, setFormData] = useState({
+    taskTitle: "",
+    taskDetails: "",
+  });
 
   const handleTask = async (e) => {
     e.preventDefault();
     try {
-      const resp = await AxiosInstance.post("/v1/tasks/create-task" , formData);
-      console.log("created task",resp);
-      if(resp.data?.success){
+      const resp = await AxiosInstance.post("/v1/tasks/create-task", formData);
+      console.log("created task", resp);
+      if (resp.data?.success) {
+        addTask(resp.data?.task);
         toast.success(resp.data?.message || "Task created successfully");
       }
-
-      
+      setFormData({
+        taskDetails: "",
+        taskTitle: "",
+      });
     } catch (error) {
       console.log("error in creating task", error);
     }
   };
 
-
   // input change handler
-  const handlerInptChange =(e) =>{
-    setFormData((prev) =>({
+  const handlerInptChange = (e) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]:e.target.value
-    }))
-  }
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   // getting all tasks
   const getAllTasks = async () => {
     try {
       const resp = await AxiosInstance.get("/v1/tasks/get-allTasks");
-      console.log("all tasks", resp.data?.data?.tasks);
-      setData(resp.data?.data?.tasks);
+      setTask(resp.data?.tasks || []);
     } catch (error) {
       console.log("error in getting all task", error);
     }
@@ -72,8 +75,10 @@ const TaskList = () => {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleTask}
-      className="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-10 border-b bg-gray-50 dark:bg-gray-800">
+      <form
+        onSubmit={handleTask}
+        className="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-10 border-b bg-gray-50 dark:bg-gray-800"
+      >
         {/* Task Title */}
         <div className="md:col-span-4">
           <label className="text-md font-medium text-gray-600 dark:text-gray-200">
@@ -116,10 +121,17 @@ const TaskList = () => {
 
       {/* tasks listed here */}
       <div className="px-6 py-10 space-y-5 ">
-        <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-100">Your Tasks</h2>
-        {data ? (data?.map((task) => (
-          <TaskListcard task={task} />
-        ))) : <div className="text-2xl text-center dark:grey-200 text-gray-800">No tasks available</div>}
+        <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-100">
+          Your Tasks
+        </h2>
+        {tasks.length === 0 && (
+          <p className="text-center text-gray-400">
+            No tasks yet. Add your first task ✨
+          </p>
+        )}
+        {tasks?.map((task) => (
+          <TaskListcard key={task._id} task={task} />
+        ))}
       </div>
     </div>
   );
