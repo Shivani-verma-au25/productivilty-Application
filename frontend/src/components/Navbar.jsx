@@ -1,13 +1,16 @@
 import { useTheme } from "@/Context/ThemeProvider";
 import { Moon, Sun } from "lucide-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate()
   return (
     <nav className="max-w-7xl bg-gray-100  mx-auto dark:bg-gray-800  shadow-md rounded-b-2xl ">
       <div className="flex justify-between items-center p-4">
-        <div className="text-2xl font-bold text-gray-900 dark:text-gray-200">Productivity App</div>
+        <div onClick={() => navigate('/')}
+        className="text-2xl font-bold text-gray-900 dark:text-gray-200 cursor-pointer">Productivity App</div>
         <div className="flex justify-center  items-center gap-5">
           <button 
           onClick={toggleTheme}
