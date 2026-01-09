@@ -22,7 +22,7 @@ const MotivationalQuotes = () => {
   };
 
   return (
-    <div className=" max-w-7xl mx-auto flex flex-col items-center rounded-2xl gap-5 py-10 bg-gray-300 mt-2">
+    <div className=" max-w-7xl mx-auto flex flex-col items-center rounded-2xl gap-5 py-10 bg-gray-200 dark:bg-gray-900 mt-2">
       <div className="relative max-w-lg">
         <img
           src={quote}
