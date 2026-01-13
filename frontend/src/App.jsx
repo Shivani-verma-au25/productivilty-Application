@@ -12,7 +12,7 @@ import DailyPlanner from './components/DailyPlanner'
 
 const App = () => {
   return (
-    <div className='min-w-screen'>
+    <div className='min-w-screen px-1 '>
       <Navbar/>
         <Routes>
           <Route path='/' element={<HomePage/>} />

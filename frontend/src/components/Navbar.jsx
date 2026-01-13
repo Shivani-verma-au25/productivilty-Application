@@ -27,9 +27,9 @@ const Navbar = () => {
               src="https://plus.unsplash.com/premium_photo-1667520043080-53dcca77e2aa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bW9kZWxzfGVufDB8fDB8fHww"
               alt=""
             />
-            <p className="text-xs font-semibold tracking-tighter text-gray-500">
+            {/* <p className="text-xs font-semibold tracking-tighter text-gray-500">
               Name
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
