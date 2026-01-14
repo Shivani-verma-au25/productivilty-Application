@@ -13,6 +13,16 @@ const PromodromoTimer = () => {
   const minutes = Math.floor(timeLeft/60);
   const seconds = timeLeft % 60;
 
+
+
+  // getting state from localstorage
+  useEffect(() => {
+    const saveTime = localStorage.getItem('pomodorotime');
+    const savedRunning = localStorage.getItem('pomodomotimeRunning')
+    if(saveTime) setTimeLefts(Number(saveTime));
+    if(savedRunning) setIsRunning(savedRunning === 'true')
+  },[])
+
   // timer 
   useEffect(() => {
   if (!isRunning) return;
@@ -30,6 +40,11 @@ const PromodromoTimer = () => {
 
   return () => clearInterval(intevalRef.current);
 }, [isRunning]);
+
+useEffect(() => {
+    localStorage.setItem('pomodorotime',timeLeft);
+    localStorage.setItem('pomodomotimeRunning',isRunning);
+  },[timeLeft,isRunning])
 
 
   // start
