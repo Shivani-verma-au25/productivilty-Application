@@ -17,7 +17,7 @@ const HomePage = () => {
     curYear: "",
   });
   const [weather, setWeather] = useState("");
-  const [currentCity, setCurrentCity] = useState("");
+  const [currentCity, setCurrentCity] = useState("delhi");
 
   // getting current city
   const getcurrentCity = () => {
@@ -47,7 +47,7 @@ const HomePage = () => {
     if(!currentCity) return;
     try {
       const res = await axios.get(
-        `http://api.weatherapi.com/v1/current.json?key=${
+        `https://api.weatherapi.com/v1/current.json?key=${
           import.meta.env.VITE_WEATHER_API
         }&q=${currentCity}`
       );
