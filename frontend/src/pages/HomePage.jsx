@@ -17,7 +17,7 @@ const HomePage = () => {
     curYear: "",
   });
   const [weather, setWeather] = useState("");
-  const [currentCity, setCurrentCity] = useState("delhi");
+  const [currentCity, setCurrentCity] = useState("");
 
   // getting current city
   const getcurrentCity = () => {
@@ -54,6 +54,7 @@ const HomePage = () => {
       setWeather(res?.data);
     } catch (error) {
       console.log(error);
+      setCurrentCity('delhi')
     }
   };
 
