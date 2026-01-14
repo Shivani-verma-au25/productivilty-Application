@@ -10,7 +10,9 @@ const Navbar = () => {
     <nav className="max-w-7xl bg-gray-100  mx-auto dark:bg-gray-800  shadow-md rounded-b-2xl ">
       <div className="flex justify-between items-center p-4">
         <div onClick={() => navigate('/')}
-        className="text-2xl font-bold text-gray-900 dark:text-gray-200 cursor-pointer">Productivity App</div>
+        className=" text-gray-900 dark:text-gray-200 cursor-pointer flex  items-center gap-3">
+          <img className="w-15 h-15 object-cover object-center" src="https://img.icons8.com/?size=100&id=gNxdPrWHLwdD&format=png&color=000000" alt="" />
+          <p className="text-2xl font-bold">Productivity App</p></div>
         <div className="flex justify-center  items-center gap-5">
           <button 
           onClick={toggleTheme}
