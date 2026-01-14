@@ -206,7 +206,7 @@ const HomePage = () => {
                   Feels Like
                 </p>
                 <span className="text-sm font-bold dark:text-gray-900">
-                  {weather?.current?.feelslike_c} <sup>o</sup>
+                  {weather?.current?.feelslike_c} <sup>o</sup>c
                 </span>
               </div>
             </div>
